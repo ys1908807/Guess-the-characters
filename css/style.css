@@ -52,33 +52,6 @@ h1 {
     display: none;
 }
 
-/* ===== وضع اللعب ===== */
-.game-mode-selection {
-    margin-bottom: 25px;
-}
-
-.mode-buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-}
-
-.mode-btn {
-    margin: 0 10px;
-    padding: 12px 20px;
-    transition: all 0.3s;
-}
-
-.mode-btn.selected {
-    background-color: #2980b9;
-    box-shadow: 0 4px 8px rgba(41, 128, 185, 0.4);
-    transform: translateY(-2px);
-}
-
-.mode-btn i {
-    margin-left: 8px;
-}
-
 /* ===== اختيار المجالات ===== */
 .category-selection {
     display: flex;
@@ -121,6 +94,168 @@ h1 {
 .category span {
     font-weight: bold;
     text-align: center;
+}
+
+/* ===== إعداد اللاعبين ===== */
+.players-setup {
+    margin: 25px 0;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.players-list {
+    margin-bottom: 15px;
+}
+
+.player-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+}
+
+.player-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.player-number {
+    min-width: 80px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.player-name-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.player-name-input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.players-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+/* ===== عرض نقاط اللاعبين ===== */
+.players-score-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.player-score-card {
+    flex: 1;
+    min-width: 160px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+.player-score-card:hover {
+    transform: translateY(-3px);
+}
+
+.player-score-card.active {
+    background-color: #e1f5fe;
+    box-shadow: 0 3px 8px rgba(3, 169, 244, 0.2);
+    border-left: 4px solid #03a9f4;
+}
+
+.player-score-card h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #2c3e50;
+    font-size: 18px;
+}
+
+.player-score-card .score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3498db;
+}
+
+/* ===== أزرار منح النقاط ===== */
+.players-award-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.award-player-btn {
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.award-player-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+/* ===== عرض النتيجة النهائية ===== */
+.final-scores {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.final-score-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.final-score-item.winner {
+    background-color: #e1f5fe;
+    box-shadow: 0 3px 8px rgba(3, 169, 244, 0.2);
+    border-right: 4px solid #03a9f4;
+}
+
+.player-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.final-score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3498db;
 }
 
 /* ===== الأزرار ===== */
@@ -215,33 +350,6 @@ h1 {
     resize: vertical;
 }
 
-/* ===== الفِرَق ===== */
-.teams {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 25px;
-    flex-wrap: wrap;
-}
-
-.team {
-    width: 48%;
-    padding: 15px;
-    background-color: #ecf0f1;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s;
-}
-
-.team:hover {
-    transform: translateY(-3px);
-}
-
-.team h3 {
-    margin-top: 0;
-    color: #2c3e50;
-}
-
 /* ===== صورة الشخصية ===== */
 .character-image-container {
     width: 300px;
@@ -251,6 +359,12 @@ h1 {
     overflow: hidden;
     position: relative;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: #f0f5ff;
+    transition: transform 0.3s ease;
+}
+
+.character-image-container:hover {
+    transform: translateY(-5px);
 }
 
 .blurred-image, .original-image {
@@ -262,53 +376,83 @@ h1 {
     position: absolute;
     top: 0;
     left: 0;
-    transition: opacity 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .blurred-image {
-    background-color: #eaeaea;
+    background: linear-gradient(135deg, #e1f5fe, #b3e5fc);
     opacity: 1;
 }
 
-.blurred-image img {
-    max-width: 100%;
-    max-height: 100%;
-    filter: blur(12px);
-    opacity: 0.5;
+.original-image {
+    background-color: #fff;
 }
 
 .original-image img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px; /* إضافة تباعد داخلي للصورة */
 }
 
 .question-mark {
-    position: absolute;
-    font-size: 80px;
-    color: #2c3e50;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.3);
+    animation: pulse 2s infinite;
+}
+
+.question-mark i {
+    font-size: 100px;
+    color: #3498db;
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* انيميشن لإظهار الصورة */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes cardFlip {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(180deg); }
+}
+
+@keyframes cardFlipBack {
+    0% { transform: rotateY(180deg); }
+    100% { transform: rotateY(0deg); }
 }
 
 .show-image {
     display: block !important;
-    animation: fadeIn 0.5s forwards;
+    animation: fadeIn 0.7s forwards;
 }
 
 .hide-image {
     opacity: 0;
     pointer-events: none;
+    transform: rotateY(180deg);
+}
+
+.card-flip {
+    animation: cardFlip 0.7s forwards;
+    transform-style: preserve-3d;
 }
 
 /* تنسيق اسم الشخصية عند ظهوره */
@@ -388,20 +532,6 @@ h1 {
     font-size: 18px;
 }
 
-/* ===== رمز اللعبة ===== */
-.game-code {
-    font-size: 28px;
-    font-weight: bold;
-    text-align: center;
-    margin: 20px 0;
-    color: #3498db;
-    padding: 10px;
-    background-color: #eaf2fe;
-    border-radius: 8px;
-    letter-spacing: 2px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
 /* ===== منطقة زر إظهار الإجابة وأزرار منح النقاط ===== */
 .admin-controls {
     text-align: center;
@@ -423,49 +553,10 @@ h1 {
     color: #343a40;
 }
 
-/* تنسيق أزرار منح النقاط */
-#award-team1, #award-team2 {
-    min-width: 120px;
-    font-weight: bold;
-    transition: all 0.3s;
-}
-
-#award-team1 {
-    background-color: #007bff;
-}
-
-#award-team1:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
-#award-team2 {
-    background-color: #28a745;
-}
-
-#award-team2:hover {
-    background-color: #1e7e34;
-    transform: translateY(-2px);
-}
-
-#no-award {
-    background-color: #6c757d;
-}
-
-/* ===== شاشة النتائج ===== */
-#winner-display {
-    font-size: 28px;
-    color: #2ecc71;
-    text-align: center;
-    margin: 30px 0;
-    padding: 10px;
-    background-color: #f0fff0;
-    border-radius: 8px;
-}
-
-/* ===== قسم التواصل ===== */
-.contact-btn-container {
-    text-align: left;
+/* ===== قسم الأزرار العلوية ===== */
+.top-buttons-container {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 15px;
 }
 
@@ -535,15 +626,65 @@ h1 {
     box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
 }
 
+/* ===== شاشة الإرشادات ===== */
+.help-screen {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 700px;
+    z-index: 1000;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.help-content {
+    margin: 20px 0;
+}
+
+.help-section {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.help-section h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.help-section ol, .help-section ul {
+    padding-right: 20px;
+    padding-left: 0;
+    text-align: right;
+}
+
+.help-section li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
 /* ===== تجاوب مع الشاشات الصغيرة ===== */
 @media (max-width: 768px) {
     .container {
         padding: 10px;
     }
     
-    .team {
+    .player-score-card {
         width: 100%;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
     
     .btn {
@@ -560,9 +701,14 @@ h1 {
         width: 250px;
         height: 250px;
     }
-
-    .teams-setup .form-group {
+    
+    .players-award-container {
+        flex-direction: column;
+    }
+    
+    .award-player-btn {
         width: 100%;
+        margin: 5px 0;
     }
     
     .contact-screen {

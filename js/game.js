@@ -1,29 +1,27 @@
 /**
- * ملف منطق اللعبة الرئيسي
+ * ملف منطق اللعبة الرئيسي - النسخة المعدلة بنظام اللاعبين
  */
 
 // كائن حالة اللعبة العالمية
 let gameState = {
-    gameCode: '',               // رمز الغرفة
     category: '',               // مجال اللعبة المختار
     timeLimit: 30,              // الوقت المحدد لكل دور (بالثواني)
-    questionsPerTeam: 10,       // عدد الأسئلة لكل فريق
+    questionsPerPlayer: 10,     // عدد الأسئلة لكل لاعب
     currentQuestion: 1,         // رقم السؤال الحالي
-    totalQuestions: 20,         // إجمالي عدد الأسئلة (10 لكل فريق)
-    currentTeam: 1,             // الفريق الحالي (1 أو 2)
-    scores: { team1: 0, team2: 0 }, // نقاط الفريقين
-    players: { team1: [], team2: [] }, // أسماء اللاعبين في كل فريق
-    teamNames: { team1: 'الفريق الأول', team2: 'الفريق الثاني' }, // أسماء الفرق
+    totalQuestions: 0,          // سيتم حسابه تلقائياً (عدد اللاعبين × عدد الأسئلة لكل لاعب)
+    currentPlayerIndex: 0,      // مؤشر اللاعب الحالي في المصفوفة
+    players: [],                // مصفوفة اللاعبين: [{name: "اسم اللاعب", score: 0}, ...]
     timerInterval: null,        // مرجع مؤقت العد التنازلي
     charactersUsed: [],         // الشخصيات التي تم استخدامها بالفعل
     characters: [],             // قائمة الشخصيات المختارة للعبة الحالية
     currentCharacterIndex: 0,   // مؤشر الشخصية الحالية
     isGameOver: false,          // هل انتهت اللعبة؟
-    inSameRoom: false,          // هل نلعب في نفس الغرفة؟
     answerShown: false,         // هل تم إظهار الإجابة؟
-    isOfflineMode: false,       // هل نحن في وضع اللعب المحلي (بدون إنترنت)؟
     isDataLoaded: false         // هل تم تحميل البيانات؟
 };
+
+// الحد الأقصى لعدد اللاعبين
+const MAX_PLAYERS = 5;
 
 // تهيئة مدير البيانات عند تحميل المستند
 document.addEventListener('DOMContentLoaded', async function() {
@@ -37,36 +35,26 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // إعداد مستمعي الأحداث
     setupEventListeners();
+    
+    // إعداد اللاعب الأول افتراضياً
+    initializeFirstPlayer();
 });
 
 // دالة لإعداد مستمعي الأحداث
 function setupEventListeners() {
-    // أزرار وضع اللعب
-    document.getElementById('online-mode').addEventListener('click', () => toggleGameMode('online'));
-    document.getElementById('offline-mode').addEventListener('click', () => toggleGameMode('offline'));
+    // أزرار إدارة اللاعبين
+    document.getElementById('add-player').addEventListener('click', addPlayer);
+    document.getElementById('remove-player').addEventListener('click', removePlayer);
     
     // أزرار التحكم
     document.getElementById('show-answer').addEventListener('click', showAnswer);
-    document.getElementById('award-team1').addEventListener('click', awardTeam1);
-    document.getElementById('award-team2').addEventListener('click', awardTeam2);
     document.getElementById('no-award').addEventListener('click', noAward);
     document.getElementById('next-question').addEventListener('click', nextQuestion);
+    document.getElementById('start-game-btn').addEventListener('click', startGame);
     
-    // أزرار أخرى
-    document.getElementById('new-game-same-room').addEventListener('click', newGameSameRoom);
-    document.getElementById('play-again-same-room').addEventListener('click', playAgainSameRoom);
+    // أزرار إنهاء اللعبة والعودة للإعدادات
     document.getElementById('play-again').addEventListener('click', playAgain);
     document.getElementById('end-game').addEventListener('click', endGame);
-    document.getElementById('cancel-game').addEventListener('click', cancelGame);
-    
-    // أزرار إنشاء والانضمام إلى اللعبة
-    document.getElementById('create-game').addEventListener('click', createNewGame);
-    document.getElementById('join-game-btn').addEventListener('click', function() {
-        document.getElementById('join-game-form').style.display = 'block';
-    });
-    document.getElementById('join-game-submit').addEventListener('click', joinGame);
-    document.getElementById('start-game').addEventListener('click', startGame);
-    document.getElementById('start-offline-game').addEventListener('click', startOfflineGame);
     
     // تفعيل اختيار المجالات
     const categoryItems = document.querySelectorAll('.category');
@@ -79,189 +67,139 @@ function setupEventListeners() {
     });
 }
 
-// دالة لإنشاء رمز لعبة عشوائي
-function generateGameCode() {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let code = '';
-    for (let i = 0; i < 6; i++) {
-        code += chars.charAt(Math.floor(Math.random() * chars.length));
+// دالة لإعداد اللاعب الأول افتراضياً
+function initializeFirstPlayer() {
+    gameState.players = [{name: '', score: 0}];
+}
+
+// دالة لإضافة لاعب جديد
+function addPlayer() {
+    if (gameState.players.length >= MAX_PLAYERS) {
+        showMessage(`لا يمكن إضافة أكثر من ${MAX_PLAYERS} لاعبين`);
+        return;
     }
-    return code;
+    
+    // إضافة لاعب جديد إلى مصفوفة اللاعبين
+    gameState.players.push({name: '', score: 0});
+    
+    // إضافة عنصر HTML للاعب الجديد
+    const playersListElement = document.getElementById('players-list');
+    const playerIndex = gameState.players.length;
+    
+    const playerItem = document.createElement('div');
+    playerItem.className = 'player-item';
+    playerItem.innerHTML = `
+        <span class="player-number">لاعب ${playerIndex}:</span>
+        <input type="text" class="player-name-input" placeholder="أدخل اسم اللاعب">
+    `;
+    
+    playersListElement.appendChild(playerItem);
+    
+    // تمكين زر حذف اللاعب
+    document.getElementById('remove-player').disabled = false;
+}
+
+// دالة لحذف آخر لاعب مضاف
+function removePlayer() {
+    if (gameState.players.length <= 1) {
+        showMessage('يجب أن يكون هناك لاعب واحد على الأقل');
+        return;
+    }
+    
+    // حذف آخر لاعب من مصفوفة اللاعبين
+    gameState.players.pop();
+    
+    // حذف آخر عنصر HTML من قائمة اللاعبين
+    const playersListElement = document.getElementById('players-list');
+    playersListElement.removeChild(playersListElement.lastChild);
+    
+    // تعطيل زر حذف اللاعب إذا تبقى لاعب واحد فقط
+    if (gameState.players.length <= 1) {
+        document.getElementById('remove-player').disabled = true;
+    }
+}
+
+// دالة لجمع أسماء اللاعبين من حقول الإدخال
+function collectPlayerNames() {
+    const playerInputs = document.querySelectorAll('.player-name-input');
+    
+    playerInputs.forEach((input, index) => {
+        // استخدام الاسم المدخل أو تعيين اسم افتراضي
+        const playerName = input.value.trim() || `لاعب ${index + 1}`;
+        gameState.players[index].name = playerName;
+    });
 }
 
 // دالة لإعادة ضبط حالة اللعبة
 function resetGame() {
     clearInterval(gameState.timerInterval);
     
-    // احتفظ ببعض الإعدادات إذا كنا نلعب في نفس الغرفة
-    const keepRoomData = gameState.inSameRoom;
-    const oldGameCode = gameState.gameCode;
-    const oldPlayers = { ...gameState.players };
+    // حفظ بيانات المجال المحدد
     const oldCategory = gameState.category;
     const oldTimeLimit = gameState.timeLimit;
-    const oldQuestionsPerTeam = gameState.questionsPerTeam;
-    const oldTeamNames = { ...gameState.teamNames };
-    const oldIsOfflineMode = gameState.isOfflineMode;
+    const oldQuestionsPerPlayer = gameState.questionsPerPlayer;
     const oldIsDataLoaded = gameState.isDataLoaded;
     
     // إعادة تعيين كل البيانات
     gameState = {
-        gameCode: keepRoomData ? oldGameCode : '',
-        category: keepRoomData ? oldCategory : '',
-        timeLimit: keepRoomData ? oldTimeLimit : 30,
-        questionsPerTeam: keepRoomData ? oldQuestionsPerTeam : 10,
-        totalQuestions: keepRoomData ? oldQuestionsPerTeam * 2 : 20,
+        category: oldCategory,
+        timeLimit: oldTimeLimit,
+        questionsPerPlayer: oldQuestionsPerPlayer,
         currentQuestion: 1,
-        currentTeam: 1,
-        scores: { team1: 0, team2: 0 },
-        players: keepRoomData ? oldPlayers : { team1: [], team2: [] },
-        teamNames: keepRoomData ? oldTeamNames : { team1: 'الفريق الأول', team2: 'الفريق الثاني' },
+        totalQuestions: 0, // سيتم حسابه عند بدء اللعبة
+        currentPlayerIndex: 0,
+        players: [{name: '', score: 0}], // إعادة تعيين اللاعبين
         timerInterval: null,
         charactersUsed: [],
         characters: [],
         currentCharacterIndex: 0,
         isGameOver: false,
-        inSameRoom: keepRoomData,
         answerShown: false,
-        isOfflineMode: keepRoomData ? oldIsOfflineMode : false,
         isDataLoaded: oldIsDataLoaded
     };
     
+    // إعادة تعيين واجهة المستخدم
+    const playersListElement = document.getElementById('players-list');
+    playersListElement.innerHTML = `
+        <div class="player-item">
+            <span class="player-number">لاعب 1:</span>
+            <input type="text" class="player-name-input" placeholder="أدخل اسم اللاعب">
+        </div>
+    `;
+    
+    // تعطيل زر حذف اللاعب
+    document.getElementById('remove-player').disabled = true;
+    
     // تحديث واجهة المستخدم
-    updateUI();
+    switchScreen('setup-screen');
 }
 
-// دالة لإنشاء لعبة جديدة أونلاين
-function createNewGame() {
-    const playerName = document.getElementById('player-name').value.trim();
-    if (!playerName) {
-        showMessage('الرجاء إدخال اسم اللاعب');
-        return;
-    }
-    
+// دالة لبدء اللعبة
+function startGame() {
     if (!gameState.category) {
         showMessage('الرجاء اختيار مجال اللعبة');
         return;
     }
     
+    // جمع أسماء اللاعبين من حقول الإدخال
+    collectPlayerNames();
+    
+    // التحقق من وجود أسماء فارغة
+    if (gameState.players.some(player => !player.name)) {
+        showMessage('الرجاء إدخال اسم لكل لاعب');
+        return;
+    }
+    
     // تعيين معلومات اللعبة
     gameState.timeLimit = parseInt(document.getElementById('time-limit').value);
-    gameState.questionsPerTeam = parseInt(document.getElementById('questions-per-team').value) || 10;
-    gameState.totalQuestions = gameState.questionsPerTeam * 2;
-    gameState.gameCode = generateGameCode();
-    gameState.players.team1.push(playerName);
-    gameState.isOfflineMode = false;
+    gameState.questionsPerPlayer = parseInt(document.getElementById('questions-per-player').value) || 10;
+    gameState.totalQuestions = gameState.players.length * gameState.questionsPerPlayer;
     
     // اختيار الشخصيات العشوائية للعبة
     gameState.characters = DataManager.getRandomCharacters(gameState.category, gameState.totalQuestions);
     
     // طباعة عدد الشخصيات المختارة للتصحيح
     console.log(`تم اختيار ${gameState.characters.length} شخصية للعبة`);
-    
-    // تحديث شاشة الانتظار
-    updateWaitingScreen();
-    
-    // الانتقال إلى شاشة الانتظار
-    switchScreen('waiting-screen');
-    
-    // محاكاة انضمام لاعب آخر بعد فترة (للعرض فقط)
-    simulateJoinPlayer();
-}
-
-// دالة لبدء لعبة محلية (بدون إنترنت)
-function startOfflineGame() {
-    if (!gameState.category) {
-        showMessage('الرجاء اختيار مجال اللعبة');
-        return;
-    }
-    
-    // تعيين معلومات اللعبة
-    gameState.timeLimit = parseInt(document.getElementById('time-limit').value);
-    gameState.questionsPerTeam = parseInt(document.getElementById('questions-per-team').value) || 10;
-    gameState.totalQuestions = gameState.questionsPerTeam * 2;
-    gameState.isOfflineMode = true;
-    
-    // تعيين أسماء الفرق المخصصة
-    gameState.teamNames.team1 = document.getElementById('team1-name').value.trim() || 'الفريق الأول';
-    gameState.teamNames.team2 = document.getElementById('team2-name').value.trim() || 'الفريق الثاني';
-    
-    // اختيار الشخصيات العشوائية للعبة
-    gameState.characters = DataManager.getRandomCharacters(gameState.category, gameState.totalQuestions);
-    
-    // طباعة عدد الشخصيات المختارة للتصحيح
-    console.log(`تم اختيار ${gameState.characters.length} شخصية للعبة المحلية`);
-    
-    // تحديث أسماء الفرق في جميع شاشات اللعبة
-    updateTeamNames();
-    
-    // بدء اللعبة مباشرة
-    startGame();
-}
-
-// دالة لتحديث أسماء الفرق في جميع شاشات اللعبة
-function updateTeamNames() {
-    // شاشة الانتظار
-    document.getElementById('waiting-team1-name').textContent = gameState.teamNames.team1;
-    document.getElementById('waiting-team2-name').textContent = gameState.teamNames.team2;
-    
-    // شاشة اللعبة
-    document.getElementById('game-team1-name').textContent = gameState.teamNames.team1;
-    document.getElementById('game-team2-name').textContent = gameState.teamNames.team2;
-    document.getElementById('award-team1-name').textContent = gameState.teamNames.team1;
-    document.getElementById('award-team2-name').textContent = gameState.teamNames.team2;
-    
-    // شاشة النتيجة
-    document.getElementById('result-team1-name').textContent = gameState.teamNames.team1;
-    document.getElementById('result-team2-name').textContent = gameState.teamNames.team2;
-    
-    // تحديث اسم الفريق الحالي
-    document.getElementById('current-team').textContent = gameState.currentTeam === 1 ? 
-        gameState.teamNames.team1 : gameState.teamNames.team2;
-}
-
-// دالة لانضمام لاعب إلى لعبة موجودة
-function joinGame() {
-    const playerName = document.getElementById('player-name').value.trim();
-    const gameCode = document.getElementById('game-code-input').value.trim().toUpperCase();
-    
-    if (!playerName) {
-        showMessage('الرجاء إدخال اسم اللاعب');
-        return;
-    }
-    
-    if (!gameCode) {
-        showMessage('الرجاء إدخال رمز اللعبة');
-        return;
-    }
-    
-    // في تطبيق حقيقي، هنا سنتحقق من وجود اللعبة بالرمز المدخل
-    // محاكاة الانضمام إلى لعبة موجودة
-    gameState.gameCode = gameCode;
-    gameState.category = 'anime'; // افتراضي للعرض
-    gameState.timeLimit = 30;
-    gameState.questionsPerTeam = 10;
-    gameState.totalQuestions = 20;
-    gameState.players.team1.push('منشئ اللعبة');
-    gameState.players.team2.push(playerName);
-    gameState.isOfflineMode = false;
-    
-    // اختيار الشخصيات العشوائية للعبة
-    gameState.characters = DataManager.getRandomCharacters(gameState.category, gameState.totalQuestions);
-    
-    // تحديث شاشة الانتظار
-    updateWaitingScreen();
-    
-    // الانتقال إلى شاشة الانتظار
-    switchScreen('waiting-screen');
-    
-    // تمكين زر بدء اللعبة
-    document.getElementById('start-game').disabled = false;
-}
-
-// دالة لبدء اللعبة
-function startGame() {
-    // تحديث أسماء الفرق
-    updateTeamNames();
     
     // تحديث شاشة اللعبة
     updateGameScreen();
@@ -286,6 +224,10 @@ function showCurrentCharacter() {
     const character = gameState.characters[gameState.currentCharacterIndex];
     const characterImg = document.getElementById('character-img');
     const characterHint = document.getElementById('character-hint');
+    const characterContainer = document.querySelector('.character-image-container');
+    
+    // إعادة ضبط تأثير القلب
+    characterContainer.classList.remove('card-flip');
     
     // طباعة معلومات الشخصية للتصحيح
     console.log("الشخصية الحالية:", character);
@@ -309,8 +251,12 @@ function showCurrentCharacter() {
     }
     
     // إظهار الصورة المبهمة وإخفاء الصورة الأصلية
-    document.getElementById('blurred-image').classList.remove('hide-image');
-    document.getElementById('original-image').style.display = 'none';
+    const blurredImage = document.getElementById('blurred-image');
+    blurredImage.classList.remove('hide-image');
+    
+    const originalImage = document.getElementById('original-image');
+    originalImage.classList.remove('show-image');
+    originalImage.style.display = 'none';
     
     // إخفاء اسم الشخصية
     document.getElementById('character-name').style.display = 'none';
@@ -318,9 +264,11 @@ function showCurrentCharacter() {
     // إعادة تعيين حالة الإجابة
     gameState.answerShown = false;
     
-    // تحديث اسم الفريق الحالي
-    document.getElementById('current-team').textContent = gameState.currentTeam === 1 ? 
-        gameState.teamNames.team1 : gameState.teamNames.team2;
+    // تحديث اسم اللاعب الحالي
+    document.getElementById('current-player').textContent = gameState.players[gameState.currentPlayerIndex].name;
+    
+    // تحديث بطاقات نقاط اللاعبين لإظهار اللاعب الحالي
+    updatePlayerScoresUI();
     
     // إخفاء أزرار منح النقطة وإظهار زر إظهار الإجابة
     document.getElementById('score-controls').style.display = 'none';
@@ -332,6 +280,9 @@ function showCurrentCharacter() {
 function showAnswer() {
     const character = gameState.characters[gameState.currentCharacterIndex];
     const characterNameElement = document.getElementById('character-name');
+    const characterContainer = document.querySelector('.character-image-container');
+    const blurredImage = document.getElementById('blurred-image');
+    const originalImage = document.getElementById('original-image');
     
     if (character) {
         characterNameElement.textContent = character.name;
@@ -339,44 +290,47 @@ function showAnswer() {
         characterNameElement.textContent = 'غير معروف';
     }
     
-    // إخفاء الصورة المبهمة وإظهار الصورة الأصلية
-    document.getElementById('blurred-image').classList.add('hide-image');
-    document.getElementById('original-image').classList.add('show-image');
-    document.getElementById('original-image').style.display = 'block';
+    // إضافة تأثير قلب الكرت
+    characterContainer.classList.add('card-flip');
     
-    // إظهار اسم الشخصية
-    characterNameElement.style.display = 'block';
+    // إعداد الصورة الأصلية قبل التأثير
+    originalImage.style.opacity = '0';
+    originalImage.style.display = 'block';
+    
+    // تنفيذ التأثيرات بعد تأخير قصير للتزامن مع حركة القلب
+    setTimeout(() => {
+        // إخفاء الصورة المبهمة
+        blurredImage.classList.add('hide-image');
+        
+        // إظهار الصورة الأصلية
+        originalImage.classList.add('show-image');
+        
+        // إظهار اسم الشخصية
+        characterNameElement.style.display = 'block';
+    }, 350); // نصف مدة التأثير تقريباً
     
     // تعيين أن الإجابة قد تم إظهارها
     gameState.answerShown = true;
     
     // إخفاء زر إظهار الإجابة وإظهار أزرار منح النقطة
     document.getElementById('show-answer').style.display = 'none';
-    document.getElementById('score-controls').style.display = 'block';
+    
+    // إظهار أزرار منح النقطة بعد اكتمال التأثير
+    setTimeout(() => {
+        document.getElementById('score-controls').style.display = 'block';
+    }, 700);
     
     // إيقاف المؤقت
     clearInterval(gameState.timerInterval);
 }
 
-// دالة لمنح نقطة للفريق الأول
-function awardTeam1() {
-    // إضافة نقطة للفريق الأول
-    gameState.scores.team1++;
+// دالة لمنح نقطة للاعب
+function awardPlayer(playerIndex) {
+    // إضافة نقطة للاعب
+    gameState.players[playerIndex].score++;
     
     // تحديث النقاط في واجهة المستخدم
-    updateScores();
-    
-    // الانتقال إلى مرحلة السؤال التالي
-    prepareNextQuestion();
-}
-
-// دالة لمنح نقطة للفريق الثاني
-function awardTeam2() {
-    // إضافة نقطة للفريق الثاني
-    gameState.scores.team2++;
-    
-    // تحديث النقاط في واجهة المستخدم
-    updateScores();
+    updatePlayerScoresUI();
     
     // الانتقال إلى مرحلة السؤال التالي
     prepareNextQuestion();
@@ -401,8 +355,8 @@ function nextQuestion() {
     gameState.currentQuestion++;
     gameState.currentCharacterIndex++;
     
-    // تبديل الفريق
-    gameState.currentTeam = gameState.currentTeam === 1 ? 2 : 1;
+    // الانتقال إلى اللاعب التالي
+    gameState.currentPlayerIndex = (gameState.currentPlayerIndex + 1) % gameState.players.length;
     
     // التحقق من انتهاء اللعبة
     if (gameState.currentQuestion > gameState.totalQuestions || gameState.currentCharacterIndex >= gameState.characters.length) {
@@ -412,8 +366,7 @@ function nextQuestion() {
     
     // تحديث واجهة المستخدم
     document.getElementById('current-question').textContent = gameState.currentQuestion;
-    document.getElementById('current-team').textContent = gameState.currentTeam === 1 ? 
-        gameState.teamNames.team1 : gameState.teamNames.team2;
+    document.getElementById('current-player').textContent = gameState.players[gameState.currentPlayerIndex].name;
     
     // عرض الشخصية التالية
     showCurrentCharacter();
@@ -450,92 +403,113 @@ function endGame() {
     // تحديث النص المعروض للفائز
     updateWinnerText();
     
+    // تحديث شاشة النتيجة
+    updateResultScreen();
+    
     // الانتقال إلى شاشة النتيجة
     switchScreen('result-screen');
-    updateResultScreen();
 }
 
 // دالة لتحديث نص الفائز
 function updateWinnerText() {
+    // البحث عن اللاعب صاحب أعلى نقاط
+    let maxScore = -1;
+    let winnersIndices = [];
+    
+    // البحث عن أعلى نقاط
+    gameState.players.forEach((player, index) => {
+        if (player.score > maxScore) {
+            maxScore = player.score;
+            winnersIndices = [index];
+        } else if (player.score === maxScore) {
+            winnersIndices.push(index);
+        }
+    });
+    
+    // تحديد نص الفائز
     let winnerText = '';
-    if (gameState.scores.team1 > gameState.scores.team2) {
-        winnerText = `الفائز: ${gameState.teamNames.team1}`;
-    } else if (gameState.scores.team2 > gameState.scores.team1) {
-        winnerText = `الفائز: ${gameState.teamNames.team2}`;
+    if (winnersIndices.length === 1) {
+        // فائز واحد
+        winnerText = `الفائز: ${gameState.players[winnersIndices[0]].name}`;
     } else {
-        winnerText = 'النتيجة: تعادل';
+        // تعادل بين عدة لاعبين
+        const winnerNames = winnersIndices.map(index => gameState.players[index].name).join(' و ');
+        winnerText = `النتيجة: تعادل بين ${winnerNames}`;
     }
     
     document.getElementById('winner-display').textContent = winnerText;
 }
 
-// دالة لبدء لعبة جديدة بنفس الإعدادات
-function newGameSameRoom() {
-    // تعيين علامة اللعب في نفس الغرفة
-    gameState.inSameRoom = true;
+// دالة لتحديث واجهة نقاط اللاعبين
+function updatePlayerScoresUI() {
+    const playersScoreContainer = document.getElementById('players-score-container');
+    playersScoreContainer.innerHTML = '';
     
-    // إنهاء اللعبة الحالية
-    endGame();
+    gameState.players.forEach((player, index) => {
+        const isCurrentPlayer = index === gameState.currentPlayerIndex;
+        
+        const playerCard = document.createElement('div');
+        playerCard.className = `player-score-card ${isCurrentPlayer ? 'active' : ''}`;
+        
+        playerCard.innerHTML = `
+            <h3>${player.name}</h3>
+            <p>النقاط: <span class="score">${player.score}</span></p>
+        `;
+        
+        playersScoreContainer.appendChild(playerCard);
+    });
+    
+    // تحديث أزرار منح النقاط
+    updateAwardButtons();
 }
 
-// دالة للعب مرة أخرى بنفس الإعدادات
-function playAgainSameRoom() {
-    gameState.inSameRoom = true;
+// دالة لتحديث أزرار منح النقاط
+function updateAwardButtons() {
+    const playersAwardContainer = document.getElementById('players-award-container');
+    playersAwardContainer.innerHTML = '';
     
-    // إعادة ضبط اللعبة مع الاحتفاظ بمعلومات الغرفة
-    resetGame();
-    
-    // اختيار شخصيات جديدة
-    gameState.characters = DataManager.getRandomCharacters(gameState.category, gameState.totalQuestions);
-    
-    // إذا كنا في وضع اللعب المحلي، نبدأ اللعبة فوراً
-    if (gameState.isOfflineMode) {
-        startGame();
-    } else {
-        // تحديث شاشة الانتظار
-        updateWaitingScreen();
-        // الانتقال إلى شاشة الانتظار
-        switchScreen('waiting-screen');
-    }
+    gameState.players.forEach((player, index) => {
+        const awardButton = document.createElement('button');
+        awardButton.className = 'award-player-btn';
+        awardButton.textContent = player.name;
+        awardButton.onclick = () => awardPlayer(index);
+        
+        playersAwardContainer.appendChild(awardButton);
+    });
 }
 
-// دالة للعب مرة أخرى
+// دالة لتحديث شاشة النتيجة
+function updateResultScreen() {
+    const finalScoresContainer = document.getElementById('final-scores');
+    finalScoresContainer.innerHTML = '';
+    
+    // تحديد أعلى نقاط
+    const maxScore = Math.max(...gameState.players.map(player => player.score));
+    
+    // ترتيب اللاعبين تنازلياً حسب النقاط
+    const sortedPlayers = [...gameState.players].sort((a, b) => b.score - a.score);
+    
+    sortedPlayers.forEach(player => {
+        const isWinner = player.score === maxScore;
+        
+        const scoreItem = document.createElement('div');
+        scoreItem.className = `final-score-item ${isWinner ? 'winner' : ''}`;
+        
+        scoreItem.innerHTML = `
+            <span class="player-name">${player.name}</span>
+            <span class="final-score">${player.score}</span>
+        `;
+        
+        finalScoresContainer.appendChild(scoreItem);
+    });
+}
+
+// دالة لبدء لعبة جديدة
 function playAgain() {
     resetGame();
-    switchScreen('setup-screen');
 }
 
-// دالة لإلغاء اللعبة والعودة للشاشة الرئيسية
-function cancelGame() {
-    // إعادة ضبط الحالة
-    resetGame();
-    
-    // العودة إلى الشاشة الرئيسية
-    switchScreen('setup-screen');
-}
-
-// محاكاة انضمام لاعب (للعرض فقط)
-function simulateJoinPlayer() {
-    setTimeout(() => {
-        if (gameState.players.team2.length === 0) {
-            gameState.players.team2.push('لاعب منافس');
-            updatePlayerNames();
-            document.getElementById('start-game').disabled = false;
-        }
-    }, 3000);
-}
-
-// دالة لتبديل وضع اللعب (أونلاين/محلي)
-function toggleGameMode(mode) {
-    if (mode === 'online') {
-        document.getElementById('online-mode').classList.add('selected');
-        document.getElementById('offline-mode').classList.remove('selected');
-        document.getElementById('online-options').style.display = 'block';
-        document.getElementById('offline-options').style.display = 'none';
-    } else {
-        document.getElementById('online-mode').classList.remove('selected');
-        document.getElementById('offline-mode').classList.add('selected');
-        document.getElementById('online-options').style.display = 'none';
-        document.getElementById('offline-options').style.display = 'block';
-    }
+// دالة لعرض رسالة للمستخدم
+function showMessage(message) {
+    alert(message);
 }

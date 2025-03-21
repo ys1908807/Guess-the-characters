@@ -1,12 +1,11 @@
 /**
- * ملف وظائف واجهة المستخدم
+ * ملف وظائف واجهة المستخدم - النسخة المعدلة
  */
 
 // دالة للتبديل بين الشاشات
 function switchScreen(screenId) {
     // إخفاء جميع الشاشات
     document.getElementById('setup-screen').style.display = 'none';
-    document.getElementById('waiting-screen').style.display = 'none';
     document.getElementById('game-screen').style.display = 'none';
     document.getElementById('result-screen').style.display = 'none';
     
@@ -19,9 +18,6 @@ function updateUI() {
     // تحديث شاشة الإعداد
     updateSetupScreen();
     
-    // تحديث شاشة الانتظار
-    updateWaitingScreen();
-    
     // تحديث شاشة اللعبة
     updateGameScreen();
     
@@ -32,7 +28,7 @@ function updateUI() {
 // دالة لتحديث شاشة الإعداد
 function updateSetupScreen() {
     document.getElementById('time-limit').value = gameState.timeLimit;
-    document.getElementById('questions-per-team').value = gameState.questionsPerTeam;
+    document.getElementById('questions-per-player').value = gameState.questionsPerPlayer;
     
     // تحديد المجال المختار (إن وجد)
     if (gameState.category) {
@@ -45,74 +41,6 @@ function updateSetupScreen() {
             }
         });
     }
-    
-    // تحديث وضع اللعب (أونلاين/محلي)
-    if (gameState.isOfflineMode) {
-        toggleGameMode('offline');
-        document.getElementById('team1-name').value = gameState.teamNames.team1;
-        document.getElementById('team2-name').value = gameState.teamNames.team2;
-    } else {
-        toggleGameMode('online');
-    }
-}
-
-// دالة لتحديث شاشة الانتظار
-function updateWaitingScreen() {
-    // تحديث معلومات اللعبة
-    const categoryDisplayName = DataManager.getCategoryDisplayName(gameState.category);
-    document.getElementById('selected-category-display').textContent = categoryDisplayName;
-    document.getElementById('time-limit-display').textContent = gameState.timeLimit;
-    document.getElementById('questions-per-team-display').textContent = gameState.questionsPerTeam;
-    document.getElementById('game-code-display').textContent = gameState.gameCode;
-    
-    // إخفاء قسم رمز اللعبة إذا كنا في وضع اللعب المحلي
-    document.getElementById('online-waiting').style.display = gameState.isOfflineMode ? 'none' : 'block';
-    
-    // تحديث أسماء الفرق
-    document.getElementById('waiting-team1-name').textContent = gameState.teamNames.team1;
-    document.getElementById('waiting-team2-name').textContent = gameState.teamNames.team2;
-    
-    // تحديث أسماء اللاعبين
-    updatePlayerNames();
-    
-    // تمكين زر بدء اللعبة إذا كان هناك لاعب واحد على الأقل في كل فريق أو كنا في وضع اللعب المحلي
-    const canStartGame = gameState.isOfflineMode || (gameState.players.team1.length > 0 && gameState.players.team2.length > 0);
-    document.getElementById('start-game').disabled = !canStartGame;
-}
-
-// دالة لتحديث أسماء اللاعبين
-function updatePlayerNames() {
-    // تحديث أسماء الفريق الأول
-    const team1PlayersElement = document.getElementById('team1-players');
-    team1PlayersElement.innerHTML = '';
-    
-    if (gameState.isOfflineMode) {
-        const playerElement = document.createElement('div');
-        playerElement.textContent = 'لعب محلي';
-        team1PlayersElement.appendChild(playerElement);
-    } else {
-        gameState.players.team1.forEach((player, index) => {
-            const playerElement = document.createElement('div');
-            playerElement.textContent = `لاعب ${index + 1}: ${player}`;
-            team1PlayersElement.appendChild(playerElement);
-        });
-    }
-    
-    // تحديث أسماء الفريق الثاني
-    const team2PlayersElement = document.getElementById('team2-players');
-    team2PlayersElement.innerHTML = '';
-    
-    if (gameState.isOfflineMode) {
-        const playerElement = document.createElement('div');
-        playerElement.textContent = 'لعب محلي';
-        team2PlayersElement.appendChild(playerElement);
-    } else {
-        gameState.players.team2.forEach((player, index) => {
-            const playerElement = document.createElement('div');
-            playerElement.textContent = `لاعب ${index + 1}: ${player}`;
-            team2PlayersElement.appendChild(playerElement);
-        });
-    }
 }
 
 // دالة لتحديث شاشة اللعبة
@@ -120,18 +48,16 @@ function updateGameScreen() {
     // تحديث معلومات اللعبة
     document.getElementById('current-question').textContent = gameState.currentQuestion;
     document.getElementById('total-questions').textContent = gameState.totalQuestions;
-    document.getElementById('current-team').textContent = gameState.currentTeam === 1 ? 
-        gameState.teamNames.team1 : gameState.teamNames.team2;
+    if (gameState.players.length > 0 && gameState.currentPlayerIndex < gameState.players.length) {
+        document.getElementById('current-player').textContent = gameState.players[gameState.currentPlayerIndex].name;
+    }
     document.getElementById('timer').textContent = gameState.timeLimit;
     
-    // تحديث أسماء الفرق
-    document.getElementById('game-team1-name').textContent = gameState.teamNames.team1;
-    document.getElementById('game-team2-name').textContent = gameState.teamNames.team2;
-    document.getElementById('award-team1-name').textContent = gameState.teamNames.team1;
-    document.getElementById('award-team2-name').textContent = gameState.teamNames.team2;
+    // تحديث بطاقات نقاط اللاعبين
+    updatePlayerScoresUI();
     
-    // تحديث النقاط
-    updateScores();
+    // تحديث أزرار منح النقاط
+    updateAwardButtons();
     
     // تحديث حالة الشاشة بناءً على حالة اللعبة
     if (gameState.answerShown) {
@@ -153,27 +79,13 @@ function updateGameScreen() {
     }
 }
 
-// دالة لتحديث النقاط
-function updateScores() {
-    document.getElementById('team1-score').textContent = gameState.scores.team1;
-    document.getElementById('team2-score').textContent = gameState.scores.team2;
-}
-
 // دالة لتحديث شاشة النتيجة
 function updateResultScreen() {
-    // تحديث أسماء الفرق
-    document.getElementById('result-team1-name').textContent = gameState.teamNames.team1;
-    document.getElementById('result-team2-name').textContent = gameState.teamNames.team2;
-    
-    // تحديث النقاط النهائية
-    document.getElementById('team1-final-score').textContent = gameState.scores.team1;
-    document.getElementById('team2-final-score').textContent = gameState.scores.team2;
-    
-    // تحديد الفائز
     updateWinnerText();
+    updateResultScreen();
 }
 
-// إضافة مستمعي الأحداث لقسم التواصل
+// إضافة مستمعي الأحداث للأزرار التفاعلية
 function setupContactListeners() {
     // زر فتح قسم التواصل
     document.getElementById('contact-btn').addEventListener('click', showContactScreen);
@@ -183,6 +95,12 @@ function setupContactListeners() {
     
     // زر إرسال الرسالة
     document.getElementById('send-message').addEventListener('click', sendContactMessage);
+    
+    // زر فتح شاشة الإرشادات
+    document.getElementById('help-btn').addEventListener('click', showHelpScreen);
+    
+    // زر إغلاق شاشة الإرشادات
+    document.getElementById('close-help').addEventListener('click', hideHelpScreen);
 }
 
 // دالة لإظهار شاشة التواصل
@@ -236,12 +154,33 @@ function sendContactMessage() {
     hideContactScreen();
 }
 
-// دالة لعرض رسالة للمستخدم
-function showMessage(message) {
-    alert(message);
+// دالة لإظهار شاشة الإرشادات
+function showHelpScreen() {
+    // إنشاء طبقة معتمة
+    const overlay = document.createElement('div');
+    overlay.className = 'overlay';
+    overlay.id = 'help-overlay';
+    document.body.appendChild(overlay);
+    
+    // إظهار شاشة الإرشادات
+    document.getElementById('help-screen').style.display = 'block';
+    
+    // إضافة مستمع لإغلاق الشاشة عند النقر خارجها
+    overlay.addEventListener('click', hideHelpScreen);
 }
 
-// إضافة استدعاء لإعداد مستمعي التواصل عند تحميل الصفحة
+// دالة لإخفاء شاشة الإرشادات
+function hideHelpScreen() {
+    document.getElementById('help-screen').style.display = 'none';
+    
+    // إزالة الطبقة المعتمة
+    const overlay = document.getElementById('help-overlay');
+    if (overlay) {
+        document.body.removeChild(overlay);
+    }
+}
+
+// إضافة استدعاء لإعداد مستمعي الأحداث عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
     setupContactListeners();
 });
