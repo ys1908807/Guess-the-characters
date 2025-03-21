@@ -1,0 +1,304 @@
+{
+    "characters": [
+      {
+        "id": "celeb1",
+        "name": "محمد صلاح",
+        "image": "images/celebrities/salah.jpg",
+        "hint": "لاعب كرة قدم مصري يلعب في ليفربول"
+      },
+      {
+        "id": "celeb2",
+        "name": "ليوناردو دي كابريو",
+        "image": "images/celebrities/dicaprio.jpg",
+        "hint": "ممثل أمريكي شهير فاز بالأوسكار عن فيلم العائد"
+      },
+      {
+        "id": "celeb3",
+        "name": "أنجلينا جولي",
+        "image": "images/celebrities/jolie.jpg",
+        "hint": "ممثلة أمريكية ومخرجة وناشطة إنسانية"
+      },
+      {
+        "id": "celeb4",
+        "name": "كاظم الساهر",
+        "image": "images/celebrities/kadim.jpg",
+        "hint": "مطرب عراقي يلقب بقيصر الأغنية العربية"
+      },
+      {
+        "id": "celeb5",
+        "name": "إيلون ماسك",
+        "image": "images/celebrities/musk.jpg",
+        "hint": "رجل أعمال يملك شركة تيسلا وسبيس إكس"
+      },
+      {
+        "id": "celeb6",
+        "name": "شاروخان",
+        "image": "images/celebrities/shahrukh.jpg",
+        "hint": "ممثل هندي يلقب بملك بوليوود"
+      },
+      {
+        "id": "celeb7",
+        "name": "أديل",
+        "image": "images/celebrities/adele.jpg",
+        "hint": "مغنية بريطانية فازت بجوائز غرامي عديدة"
+      },
+      {
+        "id": "celeb8",
+        "name": "كريستيانو رونالدو",
+        "image": "images/celebrities/ronaldo.jpg",
+        "hint": "لاعب كرة قدم برتغالي"
+      },
+      {
+        "id": "celeb9",
+        "name": "أحمد حلمي",
+        "image": "images/celebrities/helmy.jpg",
+        "hint": "ممثل كوميدي مصري"
+      },
+      {
+        "id": "celeb10",
+        "name": "بيل غيتس",
+        "image": "images/celebrities/gates.jpg",
+        "hint": "مؤسس شركة مايكروسوفت"
+      },
+      {
+        "id": "celeb11",
+        "name": "تامر حسني",
+        "image": "images/celebrities/tamer.jpg",
+        "hint": "مغني ومؤلف وممثل مصري"
+      },
+      {
+        "id": "celeb12",
+        "name": "جنيفر لوبيز",
+        "image": "images/celebrities/jlo.jpg",
+        "hint": "مغنية وممثلة أمريكية من أصل لاتيني"
+      },
+      {
+        "id": "celeb13",
+        "name": "نانسي عجرم",
+        "image": "images/celebrities/nancy.jpg",
+        "hint": "مغنية لبنانية مشهورة"
+      },
+      {
+        "id": "celeb14",
+        "name": "ويل سميث",
+        "image": "images/celebrities/will.jpg",
+        "hint": "ممثل أمريكي بدأ مسيرته كمغني راب"
+      },
+      {
+        "id": "celeb15",
+        "name": "سكارليت جوهانسن",
+        "image": "images/celebrities/scarlett.jpg",
+        "hint": "ممثلة أمريكية لعبت دور الأرملة السوداء"
+      },
+      {
+        "id": "celeb16",
+        "name": "عمرو دياب",
+        "image": "images/celebrities/amr.jpg",
+        "hint": "مطرب مصري يلقب بالهضبة"
+      },
+      {
+        "id": "celeb17",
+        "name": "تايلور سويفت",
+        "image": "images/celebrities/taylor.jpg",
+        "hint": "مغنية أمريكية فازت بالعديد من جوائز غرامي"
+      },
+      {
+        "id": "celeb18",
+        "name": "روبرت داوني جونيور",
+        "image": "images/celebrities/robert.jpg",
+        "hint": "ممثل أمريكي اشتهر بدور أيرون مان"
+      },
+      {
+        "id": "celeb19",
+        "name": "أوبرا وينفري",
+        "image": "images/celebrities/oprah.jpg",
+        "hint": "إعلامية أمريكية تعتبر من أغنى النساء في العالم"
+      },
+      {
+        "id": "celeb20",
+        "name": "مارك زوكربيرغ",
+        "image": "images/celebrities/mark.jpg",
+        "hint": "مؤسس موقع فيسبوك"
+      },
+      {
+        "id": "celeb21",
+        "name": "أصالة نصري",
+        "image": "images/celebrities/assala.jpg",
+        "hint": "مغنية سورية ذات صوت قوي"
+      },
+      {
+        "id": "celeb22",
+        "name": "الباتشينو",
+        "image": "images/celebrities/pacino.jpg",
+        "hint": "ممثل أمريكي شهير لعب دور مايكل كورليوني في العراب"
+      },
+      {
+        "id": "celeb23",
+        "name": "تشارلز تشابلن",
+        "image": "images/celebrities/chaplin.jpg",
+        "hint": "ممثل كوميدي صامت ارتبط اسمه بشخصية \"المتشرد\""
+      },
+      {
+        "id": "celeb24",
+        "name": "ماريلين مونرو",
+        "image": "images/celebrities/monroe.jpg",
+        "hint": "أيقونة هوليوود الشقراء في الخمسينات"
+      },
+      {
+        "id": "celeb25",
+        "name": "ستيف جوبز",
+        "image": "images/celebrities/jobs.jpg",
+        "hint": "مؤسس شركة أبل الراحل"
+      },
+      {
+        "id": "celeb26",
+        "name": "محمد حماقي",
+        "image": "images/celebrities/hamaki.jpg",
+        "hint": "مغني مصري صاحب أغنية \"ما بلاش\""
+      },
+      {
+        "id": "celeb27",
+        "name": "إليسا",
+        "image": "images/celebrities/elissa.jpg",
+        "hint": "مغنية لبنانية صاحبة ألبوم \"عيشه بشوقك\""
+      },
+      {
+        "id": "celeb28",
+        "name": "توم كروز",
+        "image": "images/celebrities/cruise.jpg",
+        "hint": "ممثل أمريكي مشهور بسلسلة أفلام المهمة المستحيلة"
+      },
+      {
+        "id": "celeb29",
+        "name": "جوني ديب",
+        "image": "images/celebrities/depp.jpg",
+        "hint": "ممثل أمريكي اشتهر بدور جاك سبارو"
+      },
+      {
+        "id": "celeb30",
+        "name": "محمد عبده",
+        "image": "images/celebrities/abdo.jpg",
+        "hint": "مطرب سعودي يلقب بفنان العرب"
+      },
+      {
+        "id": "celeb31",
+        "name": "رامي مالك",
+        "image": "images/celebrities/malek.jpg",
+        "hint": "ممثل أمريكي من أصل مصري فاز بالأوسكار عن دور فريدي ميركوري"
+      },
+      {
+        "id": "celeb32",
+        "name": "ماجد المهندس",
+        "image": "images/celebrities/majed.jpg",
+        "hint": "مطرب عراقي صاحب أغنية \"تناديك\""
+      },
+      {
+        "id": "celeb33",
+        "name": "بيونسيه",
+        "image": "images/celebrities/beyonce.jpg",
+        "hint": "مغنية أمريكية سابقا في فرقة ديستنيز تشايلد"
+      },
+      {
+        "id": "celeb34",
+        "name": "يسرا",
+        "image": "images/celebrities/yousra.jpg",
+        "hint": "ممثلة مصرية شهيرة"
+      },
+      {
+        "id": "celeb35",
+        "name": "جاكي شان",
+        "image": "images/celebrities/jackie.jpg",
+        "hint": "ممثل كونغ فو صيني اشتهر بأفلام الحركة الكوميدية"
+      },
+      {
+        "id": "celeb36",
+        "name": "نجيب محفوظ",
+        "image": "images/celebrities/mahfouz.jpg",
+        "hint": "أديب مصري حاصل على جائزة نوبل في الأدب"
+      },
+      {
+        "id": "celeb37",
+        "name": "أم كلثوم",
+        "image": "images/celebrities/umkulthum.jpg",
+        "hint": "سيدة الغناء العربي وصاحبة أغنية \"أنت عمري\""
+      },
+      {
+        "id": "celeb38",
+        "name": "ليدي غاغا",
+        "image": "images/celebrities/gaga.jpg",
+        "hint": "مغنية أمريكية اشتهرت بإطلالاتها الغريبة"
+      },
+      {
+        "id": "celeb39",
+        "name": "محمد منير",
+        "image": "images/celebrities/mounir.jpg",
+        "hint": "مطرب مصري يلقب بالكينج"
+      },
+      {
+        "id": "celeb40",
+        "name": "أحمد زكي",
+        "image": "images/celebrities/zaki.jpg",
+        "hint": "ممثل مصري راحل لقب بالفنان الأسمر"
+      },
+      {
+        "id": "celeb41",
+        "name": "أريانا غراندي",
+        "image": "images/celebrities/ariana.jpg",
+        "hint": "مغنية أمريكية تشتهر بصوتها العالي وتسريحة ذيل الحصان"
+      },
+      {
+        "id": "celeb42",
+        "name": "جورج كلوني",
+        "image": "images/celebrities/clooney.jpg",
+        "hint": "ممثل أمريكي وسيم يلقب بأعزب هوليوود السابق"
+      },
+      {
+        "id": "celeb43",
+        "name": "عادل إمام",
+        "image": "images/celebrities/adel.jpg",
+        "hint": "ممثل كوميدي مصري يلقب بالزعيم"
+      },
+      {
+        "id": "celeb44",
+        "name": "جيم كاري",
+        "image": "images/celebrities/carrey.jpg",
+        "hint": "ممثل كوميدي كندي-أمريكي معروف بتعابير وجهه المبالغ فيها"
+      },
+      {
+        "id": "celeb45",
+        "name": "فيروز",
+        "image": "images/celebrities/fairouz.jpg",
+        "hint": "مغنية لبنانية تلقب بسفيرة النجوم"
+      },
+      {
+        "id": "celeb46",
+        "name": "إيما واتسون",
+        "image": "images/celebrities/watson.jpg",
+        "hint": "ممثلة بريطانية اشتهرت بدور هيرميوني في هاري بوتر"
+      },
+      {
+        "id": "celeb47",
+        "name": "براد بيت",
+        "image": "images/celebrities/pitt.jpg",
+        "hint": "ممثل أمريكي وسيم فاز بالأوسكار كأفضل ممثل مساعد"
+      },
+      {
+        "id": "celeb48",
+        "name": "هيفاء وهبي",
+        "image": "images/celebrities/haifa.jpg",
+        "hint": "مغنية وممثلة لبنانية معروفة بجمالها"
+      },
+      {
+        "id": "celeb49",
+        "name": "محمد هنيدي",
+        "image": "images/celebrities/henedy.jpg",
+        "hint": "ممثل كوميدي مصري قصير القامة"
+      },
+      {
+        "id": "celeb50",
+        "name": "ميريل ستريب",
+        "image": "images/celebrities/streep.jpg",
+        "hint": "ممثلة أمريكية حاصلة على أكبر عدد من ترشيحات الأوسكار"
+      }
+    ]
+  }

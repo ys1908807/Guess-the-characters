@@ -1,0 +1,304 @@
+{
+    "characters": [
+      {
+        "id": "anime1",
+        "name": "ناروتو أوزوماكي",
+        "image": "images/anime/naruto.jpg",
+        "hint": "بطل سلسلة أنمي شهيرة يحمل وحشاً ذو تسعة ذيول"
+      },
+      {
+        "id": "anime2",
+        "name": "مونكي دي لوفي",
+        "image": "images/anime/luffy.jpg",
+        "hint": "قبطان قراصنة القبعة القشية"
+      },
+      {
+        "id": "anime3",
+        "name": "ليفاي أكرمان",
+        "image": "images/anime/levi.jpg",
+        "hint": "قائد فرقة العمليات الخاصة في أنمي هجوم العمالقة"
+      },
+      {
+        "id": "anime4",
+        "name": "إدوارد إلريك",
+        "image": "images/anime/edward.jpg",
+        "hint": "الخيميائي الفولاذي"
+      },
+      {
+        "id": "anime5",
+        "name": "ساتورو غوجو",
+        "image": "images/anime/gojo.jpg",
+        "hint": "معلم تقنية السحر في أنمي جوجوتسو كايسن"
+      },
+      {
+        "id": "anime6",
+        "name": "إيتاتشي أوتشيها",
+        "image": "images/anime/itachi.jpg",
+        "hint": "عضو سابق في منظمة أكاتسكي من عشيرة أوتشيها"
+      },
+      {
+        "id": "anime7",
+        "name": "ميكاسا أكرمان",
+        "image": "images/anime/mikasa.jpg",
+        "hint": "محاربة قوية من فيلق الاستطلاع"
+      },
+      {
+        "id": "anime8",
+        "name": "غوكو",
+        "image": "images/anime/goku.jpg",
+        "hint": "بطل دراغون بول الذي ينتمي إلى عرق السايان"
+      },
+      {
+        "id": "anime9",
+        "name": "توتورو",
+        "image": "images/anime/totoro.jpg",
+        "hint": "مخلوق ودود من فيلم استوديو غيبلي"
+      },
+      {
+        "id": "anime10",
+        "name": "لايت ياغامي",
+        "image": "images/anime/light.jpg",
+        "hint": "طالب متفوق يجد مذكرة الموت"
+      },
+      {
+        "id": "anime11",
+        "name": "سبايك سبيجل",
+        "image": "images/anime/spike.jpg",
+        "hint": "صائد مكافآت في فضاء المستقبل"
+      },
+      {
+        "id": "anime12",
+        "name": "ريم",
+        "image": "images/anime/rem.jpg",
+        "hint": "خادمة ذات شعر أزرق من أنمي إعادة الحياة من الصفر"
+      },
+      {
+        "id": "anime13",
+        "name": "إرين ييغر",
+        "image": "images/anime/eren.jpg",
+        "hint": "بطل أنمي هجوم العمالقة"
+      },
+      {
+        "id": "anime14",
+        "name": "كيلوا زولديك",
+        "image": "images/anime/killua.jpg",
+        "hint": "صديق غون من عائلة قتلة محترفين"
+      },
+      {
+        "id": "anime15",
+        "name": "تشيهيرو",
+        "image": "images/anime/chihiro.jpg",
+        "hint": "فتاة ضاعت في عالم الأرواح"
+      },
+      {
+        "id": "anime16",
+        "name": "إل",
+        "image": "images/anime/l.jpg",
+        "hint": "محقق غامض يتتبع كيرا"
+      },
+      {
+        "id": "anime17",
+        "name": "ساسكي أوتشيها",
+        "image": "images/anime/sasuke.jpg",
+        "hint": "الصديق والمنافس الأبدي لناروتو"
+      },
+      {
+        "id": "anime18",
+        "name": "سيتاما",
+        "image": "images/anime/saitama.jpg",
+        "hint": "رجل أصلع يهزم أعداءه بضربة واحدة"
+      },
+      {
+        "id": "anime19",
+        "name": "هيناتا هيوغا",
+        "image": "images/anime/hinata.jpg",
+        "hint": "فتاة خجولة من عشيرة هيوغا تمتلك البياكوغان"
+      },
+      {
+        "id": "anime20",
+        "name": "سينكو",
+        "image": "images/anime/senku.jpg",
+        "hint": "عالم شاب يحاول إعادة بناء الحضارة بعد تحجر البشرية"
+      },
+      {
+        "id": "anime21",
+        "name": "إيروين سميث",
+        "image": "images/anime/erwin.jpg",
+        "hint": "القائد الكاريزمي لفيلق الاستطلاع"
+      },
+      {
+        "id": "anime22",
+        "name": "زورو رورونوا",
+        "image": "images/anime/zoro.jpg",
+        "hint": "مبارز يستخدم ثلاثة سيوف في آن واحد"
+      },
+      {
+        "id": "anime23",
+        "name": "ميسا أماني",
+        "image": "images/anime/misa.jpg",
+        "hint": "عارضة أزياء تمتلك مذكرة موت وعيون الشينيغامي"
+      },
+      {
+        "id": "anime24",
+        "name": "فيجيتا",
+        "image": "images/anime/vegeta.jpg",
+        "hint": "أمير سايان ومنافس غوكو"
+      },
+      {
+        "id": "anime25",
+        "name": "إيميليا",
+        "image": "images/anime/emilia.jpg",
+        "hint": "نصف إلف ذات شعر فضي من أنمي إعادة الحياة من الصفر"
+      },
+      {
+        "id": "anime26",
+        "name": "أول مايت",
+        "image": "images/anime/all-might.jpg",
+        "hint": "البطل رقم واحد وحامل قوة ون فور أول"
+      },
+      {
+        "id": "anime27",
+        "name": "شويا إيشيدا",
+        "image": "images/anime/ishida.jpg",
+        "hint": "شاب يحاول تكفير ذنبه بعد أن تنمر على زميلته الصماء"
+      },
+      {
+        "id": "anime28",
+        "name": "هيسوكا موروو",
+        "image": "images/anime/hisoka.jpg",
+        "hint": "مهرج قاتل محترف وصائد يبحث عن منافسين أقوياء"
+      },
+      {
+        "id": "anime29",
+        "name": "ميلودياس",
+        "image": "images/anime/meliodas.jpg",
+        "hint": "قائد الخطايا السبع المميتة وابن ملك الشياطين"
+      },
+      {
+        "id": "anime30",
+        "name": "سيبر (أرتوريا)",
+        "image": "images/anime/saber.jpg",
+        "hint": "ملك بريطانيا القديمة في سلسلة فيت"
+      },
+      {
+        "id": "anime31",
+        "name": "كين كانيكي",
+        "image": "images/anime/kaneki.jpg",
+        "hint": "طالب جامعي تحول إلى نصف غول"
+      },
+      {
+        "id": "anime32",
+        "name": "ميدوريا إيزوكو",
+        "image": "images/anime/deku.jpg",
+        "hint": "فتى كان بلا قوى ثم ورث قوة أقوى بطل"
+      },
+      {
+        "id": "anime33",
+        "name": "إنوياشا",
+        "image": "images/anime/inuyasha.jpg",
+        "hint": "نصف شيطان يبحث عن شظايا جوهرة المفقودة"
+      },
+      {
+        "id": "anime34",
+        "name": "ييتو إيتادوري",
+        "image": "images/anime/itadori.jpg",
+        "hint": "طالب ثانوي ابتلع إصبع سوكونا"
+      },
+      {
+        "id": "anime35",
+        "name": "تانجيرو كاميدو",
+        "image": "images/anime/tanjiro.jpg",
+        "hint": "صائد شياطين يبحث عن علاج لأخته"
+      },
+      {
+        "id": "anime36",
+        "name": "ساكورا هارونو",
+        "image": "images/anime/sakura.jpg",
+        "hint": "نينجا طبية من فريق ناروتو السابع"
+      },
+      {
+        "id": "anime37",
+        "name": "هانجي زوي",
+        "image": "images/anime/hange.jpg",
+        "hint": "عالمة مهووسة بالعمالقة في فيلق الاستطلاع"
+      },
+      {
+        "id": "anime38",
+        "name": "يوسكي اورايمشي",
+        "image": "images/anime/yusuke.jpg",
+        "hint": "محقق العالم الآخر في أنمي يو يو هاكوشو"
+      },
+      {
+        "id": "anime39",
+        "name": "سيشوميرو",
+        "image": "images/anime/sesshomaru.jpg",
+        "hint": "شيطان كامل وأخ غير شقيق لإنوياشا"
+      },
+      {
+        "id": "anime40",
+        "name": "راينر براون",
+        "image": "images/anime/reiner.jpg",
+        "hint": "المحارب المدرع في هجوم العمالقة"
+      },
+      {
+        "id": "anime41",
+        "name": "آشيا ريبوكو",
+        "image": "images/anime/asuka.jpg",
+        "hint": "طيارة ايفا المتغطرسة في نيون جينيسس إيفانجليون"
+      },
+      {
+        "id": "anime42",
+        "name": "كرين",
+        "image": "images/anime/kuririn.jpg",
+        "hint": "صديق طفولة غوكو الأصلع وأقوى إنسان على الأرض"
+      },
+      {
+        "id": "anime43",
+        "name": "بيكاتشو",
+        "image": "images/anime/pikachu.jpg",
+        "hint": "بوكيمون أصفر كهربائي مشهور"
+      },
+      {
+        "id": "anime44",
+        "name": "نيزوكو كاميدو",
+        "image": "images/anime/nezuko.jpg",
+        "hint": "أخت تانجيرو التي تحولت إلى شيطان"
+      },
+      {
+        "id": "anime45",
+        "name": "ليلوش لامبيروج",
+        "image": "images/anime/lelouch.jpg",
+        "hint": "أمير منفي يمتلك قوة خارقة في عينه"
+      },
+      {
+        "id": "anime46",
+        "name": "ماكي زينين",
+        "image": "images/anime/maki.jpg",
+        "hint": "مقاتلة من عائلة زينين في جوجوتسو كايسن"
+      },
+      {
+        "id": "anime47",
+        "name": "إيدوارد نيوجيت",
+        "image": "images/anime/whitebeard.jpg",
+        "hint": "اللحية البيضاء، أقوى رجل في العالم"
+      },
+      {
+        "id": "anime48",
+        "name": "هيكاري",
+        "image": "images/anime/hikari.jpg",
+        "hint": "بطلة ديجيمون الضوء"
+      },
+      {
+        "id": "anime49",
+        "name": "ريوك",
+        "image": "images/anime/ryuk.jpg",
+        "hint": "شينيغامي أسقط مذكرة الموت في عالم البشر"
+      },
+      {
+        "id": "anime50",
+        "name": "ساسوري",
+        "image": "images/anime/sasori.jpg",
+        "hint": "عضو أكاتسكي الذي يتحكم بالدمى"
+      }
+    ]
+  }

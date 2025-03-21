@@ -1,0 +1,573 @@
+/* ===== الإعدادات العامة ===== */
+* {
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f5ff;
+    direction: rtl;
+    text-align: right;
+    font-family: 'Tajawal', sans-serif;
+    background-image: url('../images/ui/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 30px;
+    font-size: 36px;
+    color: #1a5276;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== شاشات اللعبة ===== */
+.setup-screen, .waiting-screen, .game-screen, .result-screen {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.setup-screen {
+    display: block;
+}
+
+.waiting-screen, .game-screen, .result-screen {
+    display: none;
+}
+
+/* ===== وضع اللعب ===== */
+.game-mode-selection {
+    margin-bottom: 25px;
+}
+
+.mode-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.mode-btn {
+    margin: 0 10px;
+    padding: 12px 20px;
+    transition: all 0.3s;
+}
+
+.mode-btn.selected {
+    background-color: #2980b9;
+    box-shadow: 0 4px 8px rgba(41, 128, 185, 0.4);
+    transform: translateY(-2px);
+}
+
+.mode-btn i {
+    margin-left: 8px;
+}
+
+/* ===== اختيار المجالات ===== */
+.category-selection {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.category {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+    background-color: #e6e6e6;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.category:hover {
+    transform: scale(1.05);
+    background-color: #d1e0ff;
+}
+
+.category.selected {
+    background-color: #3498db;
+    color: white;
+    box-shadow: 0 3px 7px rgba(52, 152, 219, 0.5);
+}
+
+.category i {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.category span {
+    font-weight: bold;
+    text-align: center;
+}
+
+/* ===== الأزرار ===== */
+.btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-primary {
+    background-color: #3498db;
+}
+
+.btn-success {
+    background-color: #2ecc71;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+}
+
+.btn-warning {
+    background-color: #f39c12;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* ===== نماذج الإدخال ===== */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #34495e;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    outline: none;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* ===== الفِرَق ===== */
+.teams {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.team {
+    width: 48%;
+    padding: 15px;
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+.team:hover {
+    transform: translateY(-3px);
+}
+
+.team h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+/* ===== صورة الشخصية ===== */
+.character-image-container {
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.blurred-image, .original-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s ease;
+}
+
+.blurred-image {
+    background-color: #eaeaea;
+    opacity: 1;
+}
+
+.blurred-image img {
+    max-width: 100%;
+    max-height: 100%;
+    filter: blur(12px);
+    opacity: 0.5;
+}
+
+.original-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.question-mark {
+    position: absolute;
+    font-size: 80px;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* انيميشن لإظهار الصورة */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.show-image {
+    display: block !important;
+    animation: fadeIn 0.5s forwards;
+}
+
+.hide-image {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* تنسيق اسم الشخصية عند ظهوره */
+#character-name {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 26px;
+    color: #2c3e50;
+    background-color: #f0f8ff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeIn 0.5s forwards;
+}
+
+/* ===== التلميح ===== */
+.character-hint {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 80%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.character-hint h4 {
+    margin-top: 0;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.character-hint p {
+    margin: 0;
+    font-size: 18px;
+    color: #34495e;
+}
+
+/* ===== العداد الزمني ===== */
+.timer-container {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.timer {
+    font-size: 40px;
+    font-weight: bold;
+    color: #e74c3c;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.timer-label {
+    font-size: 16px;
+    color: #7f8c8d;
+}
+
+/* ===== النقاط ===== */
+.score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3498db;
+}
+
+/* ===== معلومات اللعبة ===== */
+.game-info {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.game-info p {
+    margin: 8px 0;
+    font-size: 18px;
+}
+
+/* ===== رمز اللعبة ===== */
+.game-code {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    color: #3498db;
+    padding: 10px;
+    background-color: #eaf2fe;
+    border-radius: 8px;
+    letter-spacing: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== منطقة زر إظهار الإجابة وأزرار منح النقاط ===== */
+.admin-controls {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.score-controls {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.score-controls h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #343a40;
+}
+
+/* تنسيق أزرار منح النقاط */
+#award-team1, #award-team2 {
+    min-width: 120px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+#award-team1 {
+    background-color: #007bff;
+}
+
+#award-team1:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+#award-team2 {
+    background-color: #28a745;
+}
+
+#award-team2:hover {
+    background-color: #1e7e34;
+    transform: translateY(-2px);
+}
+
+#no-award {
+    background-color: #6c757d;
+}
+
+/* ===== شاشة النتائج ===== */
+#winner-display {
+    font-size: 28px;
+    color: #2ecc71;
+    text-align: center;
+    margin: 30px 0;
+    padding: 10px;
+    background-color: #f0fff0;
+    border-radius: 8px;
+}
+
+/* ===== قسم التواصل ===== */
+.contact-btn-container {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.contact-screen {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 500px;
+    z-index: 1000;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.contact-info {
+    margin: 20px 0;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.contact-item {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.contact-item i {
+    margin-left: 10px;
+    color: #3498db;
+    width: 24px;
+    text-align: center;
+}
+
+.contact-form {
+    margin-top: 20px;
+}
+
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Tajawal', sans-serif;
+    resize: vertical;
+}
+
+.contact-form textarea:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* ===== تجاوب مع الشاشات الصغيرة ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .team {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    .category {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .character-image-container {
+        width: 250px;
+        height: 250px;
+    }
+
+    .teams-setup .form-group {
+        width: 100%;
+    }
+    
+    .contact-screen {
+        width: 95%;
+        max-width: none;
+        padding: 15px;
+    }
+}

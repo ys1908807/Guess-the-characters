@@ -1,0 +1,304 @@
+{
+    "characters": [
+      {
+        "id": "athlete1",
+        "name": "ليونيل ميسي",
+        "image": "images/athletes/messi.jpg",
+        "hint": "لاعب كرة قدم أرجنتيني حائز على الكرة الذهبية عدة مرات"
+      },
+      {
+        "id": "athlete2",
+        "name": "سيرينا ويليامز",
+        "image": "images/athletes/serena.jpg",
+        "hint": "لاعبة تنس أمريكية فازت بالعديد من بطولات الغراند سلام"
+      },
+      {
+        "id": "athlete3",
+        "name": "نور الشربيني",
+        "image": "images/athletes/elsherbini.jpg",
+        "hint": "لاعبة اسكواش مصرية عالمية"
+      },
+      {
+        "id": "athlete4",
+        "name": "ليبرون جيمس",
+        "image": "images/athletes/lebron.jpg",
+        "hint": "لاعب كرة سلة أمريكي يلعب في دوري NBA"
+      },
+      {
+        "id": "athlete5",
+        "name": "رافاييل نادال",
+        "image": "images/athletes/nadal.jpg",
+        "hint": "لاعب تنس إسباني لقب بملك الملاعب الترابية"
+      },
+      {
+        "id": "athlete6",
+        "name": "كريم بنزيما",
+        "image": "images/athletes/benzema.jpg",
+        "hint": "لاعب كرة قدم فرنسي فاز بالكرة الذهبية"
+      },
+      {
+        "id": "athlete7",
+        "name": "أسامة مؤمن",
+        "image": "images/athletes/momen.jpg",
+        "hint": "لاعب اسكواش مصري عالمي"
+      },
+      {
+        "id": "athlete8",
+        "name": "أوسين بولت",
+        "image": "images/athletes/bolt.jpg",
+        "hint": "عداء جامايكي يلقب بأسرع رجل في العالم"
+      },
+      {
+        "id": "athlete9",
+        "name": "كيليان مبابي",
+        "image": "images/athletes/mbappe.jpg",
+        "hint": "لاعب كرة قدم فرنسي يتميز بسرعته"
+      },
+      {
+        "id": "athlete10",
+        "name": "روجر فيدرر",
+        "image": "images/athletes/federer.jpg",
+        "hint": "لاعب تنس سويسري يعتبر من أفضل اللاعبين في التاريخ"
+      },
+      {
+        "id": "athlete11",
+        "name": "محمد أبو تريكة",
+        "image": "images/athletes/aboutrika.jpg",
+        "hint": "لاعب كرة قدم مصري سابق يلقب بالماجيكو"
+      },
+      {
+        "id": "athlete12",
+        "name": "نوفاك دجوكوفيتش",
+        "image": "images/athletes/djokovic.jpg",
+        "hint": "لاعب تنس صربي حقق العديد من الألقاب الكبرى"
+      },
+      {
+        "id": "athlete13",
+        "name": "ستيفن كاري",
+        "image": "images/athletes/curry.jpg",
+        "hint": "لاعب كرة سلة أمريكي يشتهر بتسديداته الثلاثية"
+      },
+      {
+        "id": "athlete14",
+        "name": "فيرجيل فان دايك",
+        "image": "images/athletes/vandijk.jpg",
+        "hint": "مدافع هولندي يلعب لليفربول"
+      },
+      {
+        "id": "athlete15",
+        "name": "فيفيان شيروود",
+        "image": "images/athletes/cheruiyot.jpg",
+        "hint": "عداءة كينية فازت بميداليات أولمبية عديدة"
+      },
+      {
+        "id": "athlete16",
+        "name": "نيمار جونيور",
+        "image": "images/athletes/neymar.jpg",
+        "hint": "لاعب كرة قدم برازيلي"
+      },
+      {
+        "id": "athlete17",
+        "name": "سيمون بايلز",
+        "image": "images/athletes/biles.jpg",
+        "hint": "لاعبة جمباز أمريكية حققت أرقاماً قياسية"
+      },
+      {
+        "id": "athlete18",
+        "name": "كايلي إيرفينغ",
+        "image": "images/athletes/irving.jpg",
+        "hint": "لاعب كرة سلة أمريكي يتميز بمهارات التحكم بالكرة"
+      },
+      {
+        "id": "athlete19",
+        "name": "رياض محرز",
+        "image": "images/athletes/mahrez.jpg",
+        "hint": "لاعب كرة قدم جزائري يلعب للمانشستر سيتي"
+      },
+      {
+        "id": "athlete20",
+        "name": "محمد صلاح",
+        "image": "images/athletes/mo-salah.jpg",
+        "hint": "لاعب كرة قدم مصري يلقب بالفرعون المصري"
+      },
+      {
+        "id": "athlete21",
+        "name": "لوكا مودريتش",
+        "image": "images/athletes/modric.jpg",
+        "hint": "لاعب كرة قدم كرواتي فاز بالكرة الذهبية"
+      },
+      {
+        "id": "athlete22",
+        "name": "مايكل جوردان",
+        "image": "images/athletes/jordan.jpg",
+        "hint": "أسطورة كرة السلة الأمريكية ولاعب شيكاغو بولز السابق"
+      },
+      {
+        "id": "athlete23",
+        "name": "سيرجيو راموس",
+        "image": "images/athletes/ramos.jpg",
+        "hint": "مدافع إسباني قوي لعب لريال مدريد"
+      },
+      {
+        "id": "athlete24",
+        "name": "تايغر وودز",
+        "image": "images/athletes/woods.jpg",
+        "hint": "لاعب غولف أمريكي يعتبر من أعظم لاعبي الغولف"
+      },
+      {
+        "id": "athlete25",
+        "name": "ديل ستين",
+        "image": "images/athletes/steyn.jpg",
+        "hint": "لاعب كريكيت جنوب أفريقي يعتبر من أفضل الرماة السريعين"
+      },
+      {
+        "id": "athlete26",
+        "name": "روبرت ليفاندوفسكي",
+        "image": "images/athletes/lewandowski.jpg",
+        "hint": "مهاجم بولندي يتميز بقدراته التهديفية العالية"
+      },
+      {
+        "id": "athlete27",
+        "name": "تشارلز بيل",
+        "image": "images/athletes/bell.jpg",
+        "hint": "لاعب كمال أجسام أمريكي معروف بلقب \"الوحش\""
+      },
+      {
+        "id": "athlete28",
+        "name": "كوبي براينت",
+        "image": "images/athletes/bryant.jpg",
+        "hint": "أسطورة كرة السلة الراحل ولاعب لوس أنجلوس ليكرز"
+      },
+      {
+        "id": "athlete29",
+        "name": "فيفيان ريتشارد",
+        "image": "images/athletes/richards.jpg",
+        "hint": "بطلة أمريكية في سباقات المضمار والميدان"
+      },
+      {
+        "id": "athlete30",
+        "name": "وين روني",
+        "image": "images/athletes/rooney.jpg",
+        "hint": "مهاجم إنجليزي لعب لمانشستر يونايتد"
+      },
+      {
+        "id": "athlete31",
+        "name": "كيفن دي بروين",
+        "image": "images/athletes/debruyne.jpg",
+        "hint": "لاعب وسط بلجيكي يلعب لمانشستر سيتي"
+      },
+      {
+        "id": "athlete32",
+        "name": "شاكيل أونيل",
+        "image": "images/athletes/oneal.jpg",
+        "hint": "لاعب كرة سلة أمريكي سابق يتميز بجسمه الضخم"
+      },
+      {
+        "id": "athlete33",
+        "name": "هاكان شوكور",
+        "image": "images/athletes/sukur.jpg",
+        "hint": "لاعب كرة قدم تركي سابق سجل أسرع هدف في تاريخ كأس العالم"
+      },
+      {
+        "id": "athlete34",
+        "name": "آندي موراي",
+        "image": "images/athletes/murray.jpg",
+        "hint": "لاعب تنس بريطاني فاز ببطولة ويمبلدون مرتين"
+      },
+      {
+        "id": "athlete35",
+        "name": "زين الدين زيدان",
+        "image": "images/athletes/zidane.jpg",
+        "hint": "لاعب كرة قدم فرنسي سابق ومدرب ريال مدريد"
+      },
+      {
+        "id": "athlete36",
+        "name": "أندريه إنييستا",
+        "image": "images/athletes/iniesta.jpg",
+        "hint": "لاعب وسط إسباني سجل هدف الفوز في نهائي كأس العالم 2010"
+      },
+      {
+        "id": "athlete37",
+        "name": "توني هوك",
+        "image": "images/athletes/hawk.jpg",
+        "hint": "متزلج أمريكي محترف على الألواح"
+      },
+      {
+        "id": "athlete38",
+        "name": "لويس فيغو",
+        "image": "images/athletes/figo.jpg",
+        "hint": "لاعب كرة قدم برتغالي سابق انتقل من برشلونة إلى ريال مدريد"
+      },
+      {
+        "id": "athlete39",
+        "name": "إيكر كاسياس",
+        "image": "images/athletes/casillas.jpg",
+        "hint": "حارس مرمى إسباني أسطوري لعب لريال مدريد"
+      },
+      {
+        "id": "athlete40",
+        "name": "ديفيد بيكهام",
+        "image": "images/athletes/beckham.jpg",
+        "hint": "لاعب كرة قدم إنجليزي اشتهر بركلاته الحرة وتسريحات شعره"
+      },
+      {
+        "id": "athlete41",
+        "name": "فلويد مايويذر",
+        "image": "images/athletes/mayweather.jpg",
+        "hint": "ملاكم أمريكي لم يخسر أي نزال احترافي"
+      },
+      {
+        "id": "athlete42",
+        "name": "تشافي هيرنانديز",
+        "image": "images/athletes/xavi.jpg",
+        "hint": "لاعب وسط إسباني سابق ومدرب برشلونة حالياً"
+      },
+      {
+        "id": "athlete43",
+        "name": "حسام حسن",
+        "image": "images/athletes/hussam.jpg",
+        "hint": "هداف منتخب مصر التاريخي"
+      },
+      {
+        "id": "athlete44",
+        "name": "فيرغسون",
+        "image": "images/athletes/ferguson.jpg",
+        "hint": "المدرب الاسطوري لمانشستر يونايتد"
+      },
+      {
+        "id": "athlete45",
+        "name": "بيليه",
+        "image": "images/athletes/pele.jpg",
+        "hint": "أسطورة كرة القدم البرازيلية والفائز بكأس العالم ثلاث مرات"
+      },
+      {
+        "id": "athlete46",
+        "name": "مايكل فيلبس",
+        "image": "images/athletes/phelps.jpg",
+        "hint": "سباح أمريكي حاصل على أكبر عدد من الميداليات الذهبية في تاريخ الألعاب الأولمبية"
+      },
+      {
+        "id": "athlete47",
+        "name": "كاكا",
+        "image": "images/athletes/kaka.jpg",
+        "hint": "لاعب كرة قدم برازيلي فاز بالكرة الذهبية عام 2007"
+      },
+      {
+        "id": "athlete48",
+        "name": "أنطوني جوشوا",
+        "image": "images/athletes/joshua.jpg",
+        "hint": "ملاكم بريطاني بطل العالم للوزن الثقيل"
+      },
+      {
+        "id": "athlete49",
+        "name": "أليسون بيكر",
+        "image": "images/athletes/alisson.jpg",
+        "hint": "حارس مرمى برازيلي يلعب لليفربول"
+      },
+      {
+        "id": "athlete50",
+        "name": "محمد علي كلاي",
+        "image": "images/athletes/ali.jpg",
+        "hint": "أسطورة الملاكمة الأمريكي الذي غير اسمه من كاسيوس كلاي"
+      }
+    ]
+}

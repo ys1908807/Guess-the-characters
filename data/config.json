@@ -1,0 +1,20 @@
+{
+    "placeholderImage": "images/ui/placeholder.jpg",
+    "categories": [
+      {
+        "id": "anime",
+        "name": "شخصيات أنمي",
+        "icon": "fas fa-tv"
+      },
+      {
+        "id": "celebrities",
+        "name": "مشاهير",
+        "icon": "fas fa-star"
+      },
+      {
+        "id": "athletes",
+        "name": "لاعبين كرة",
+        "icon": "fas fa-futbol"
+      }
+    ]
+  }

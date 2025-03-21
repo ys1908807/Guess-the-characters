@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة تخمين الشخصيات</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <h1>لعبة تخمين الشخصيات</h1>
+        
+        <!-- شاشة الإعداد -->
+        <div class="setup-screen" id="setup-screen">
+            <h2>إعداد اللعبة</h2>
+            
+            <!-- إضافة زر التواصل في الجزء العلوي -->
+            <div class="contact-btn-container">
+                <button class="btn btn-info" id="contact-btn">
+                    <i class="fas fa-envelope"></i> تواصل معنا
+                </button>
+            </div>
+            
+            <div class="game-mode-selection">
+                <h3>اختر وضع اللعب</h3>
+                <div class="mode-buttons">
+                    <button class="btn btn-primary mode-btn selected" id="online-mode">
+                        <i class="fas fa-wifi"></i> لعب أونلاين
+                    </button>
+                    <button class="btn btn-primary mode-btn" id="offline-mode">
+                        <i class="fas fa-user-friends"></i> لعب محلي (بدون إنترنت)
+                    </button>
+                </div>
+            </div>
+            
+            <div id="online-options">
+                <div class="form-group">
+                    <label for="player-name">اسم اللاعب</label>
+                    <input type="text" id="player-name" placeholder="أدخل اسمك">
+                </div>
+                
+                <div class="btn-container">
+                    <button class="btn btn-primary" id="create-game">إنشاء لعبة جديدة</button>
+                    <button class="btn btn-success" id="join-game-btn">انضمام إلى لعبة</button>
+                </div>
+                
+                <div id="join-game-form" style="display: none; margin-top: 20px;">
+                    <div class="form-group">
+                        <label for="game-code-input">رمز اللعبة</label>
+                        <input type="text" id="game-code-input" placeholder="أدخل رمز اللعبة">
+                    </div>
+                    <div class="btn-container">
+                        <button class="btn btn-success" id="join-game-submit">انضمام</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="offline-options" style="display: none;">
+                <div class="teams-setup">
+                    <div class="form-group">
+                        <label for="team1-name">اسم الفريق الأول</label>
+                        <input type="text" id="team1-name" placeholder="أدخل اسم الفريق الأول" value="الفريق الأول">
+                    </div>
+                    <div class="form-group">
+                        <label for="team2-name">اسم الفريق الثاني</label>
+                        <input type="text" id="team2-name" placeholder="أدخل اسم الفريق الثاني" value="الفريق الثاني">
+                    </div>
+                </div>
+                
+                <div class="btn-container">
+                    <button class="btn btn-primary" id="start-offline-game">بدء اللعبة</button>
+                </div>
+            </div>
+            
+            <h3>اختر مجال اللعبة</h3>
+            <div class="category-selection">
+                <div class="category" data-category="anime">
+                    <i class="fas fa-tv"></i>
+                    <span>شخصيات أنمي</span>
+                </div>
+                <div class="category" data-category="celebrities">
+                    <i class="fas fa-star"></i>
+                    <span>مشاهير</span>
+                </div>
+                <div class="category" data-category="athletes">
+                    <i class="fas fa-futbol"></i>
+                    <span>لاعبين كرة</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="time-limit">الوقت المحدد للدور (بالثواني)</label>
+                <input type="number" id="time-limit" min="10" max="120" value="30">
+            </div>
+            
+            <div class="form-group">
+                <label for="questions-per-team">عدد الأسئلة لكل فريق</label>
+                <input type="number" id="questions-per-team" min="1" max="25" value="10">
+            </div>
+        </div>
+        
+        <!-- شاشة الانتظار -->
+        <div class="waiting-screen" id="waiting-screen">
+            <h2>انتظار اللاعبين</h2>
+            <div class="game-info">
+                <p>المجال: <span id="selected-category-display"></span></p>
+                <p>الوقت المحدد لكل دور: <span id="time-limit-display"></span> ثانية</p>
+                <p>عدد الأسئلة لكل فريق: <span id="questions-per-team-display"></span></p>
+            </div>
+            <div id="online-waiting">
+                <h3>رمز اللعبة:</h3>
+                <div class="game-code" id="game-code-display">ABC123</div>
+                <p>شارك هذا الرمز مع صديقك للانضمام إلى اللعبة</p>
+            </div>
+            
+            <div class="teams">
+                <div class="team">
+                    <h3 id="waiting-team1-name">الفريق الأول</h3>
+                    <div id="team1-players"></div>
+                </div>
+                <div class="team">
+                    <h3 id="waiting-team2-name">الفريق الثاني</h3>
+                    <div id="team2-players"></div>
+                </div>
+            </div>
+            
+            <div class="btn-container">
+                <button class="btn btn-primary" id="start-game" disabled>بدء اللعبة</button>
+                <button class="btn btn-danger" id="cancel-game">إلغاء</button>
+            </div>
+        </div>
+        
+        <!-- شاشة اللعبة -->
+        <div class="game-screen" id="game-screen">
+            <div class="game-info">
+                <p>السؤال: <span id="current-question">1</span> من <span id="total-questions">20</span></p>
+                <p>دور: <span id="current-team">الفريق الأول</span></p>
+            </div>
+            
+            <div class="timer-container">
+                <div class="timer" id="timer">30</div>
+                <div class="timer-label">ثانية متبقية</div>
+            </div>
+            
+            <div class="character-container">
+                <div class="character-image-container">
+                    <!-- صورة الشخصية المبهمة التي تظهر في البداية -->
+                    <div class="blurred-image" id="blurred-image">
+                        <div class="question-mark">
+                            <i class="fas fa-question-circle fa-5x"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- صورة الشخصية الحقيقية التي ستظهر بعد الضغط على زر "إظهار الإجابة" -->
+                    <div class="original-image" id="original-image" style="display: none;">
+                        <img id="character-img" src="images/ui/placeholder.jpg" alt="شخصية">
+                    </div>
+                </div>
+                
+                <h3 id="character-name" style="display: none;">اسم الشخصية</h3>
+                
+                <div class="character-hint">
+                    <h4>تلميح:</h4>
+                    <p id="character-hint">تلميح عن الشخصية...</p>
+                </div>
+            </div>
+            
+            <div class="teams">
+                <div class="team">
+                    <h3 id="game-team1-name">الفريق الأول</h3>
+                    <p>النقاط: <span id="team1-score" class="score">0</span></p>
+                </div>
+                <div class="team">
+                    <h3 id="game-team2-name">الفريق الثاني</h3>
+                    <p>النقاط: <span id="team2-score" class="score">0</span></p>
+                </div>
+            </div>
+            
+            <div class="actions-container">
+                <div class="admin-controls">
+                    <button class="btn btn-info" id="show-answer">إظهار الإجابة</button>
+                </div>
+                
+                <div class="score-controls" id="score-controls" style="display: none;">
+                    <h4>منح النقطة:</h4>
+                    <div class="btn-container">
+                        <button class="btn btn-primary" id="award-team1">
+                            <span id="award-team1-name">الفريق الأول</span>
+                        </button>
+                        <button class="btn btn-primary" id="award-team2">
+                            <span id="award-team2-name">الفريق الثاني</span>
+                        </button>
+                        <button class="btn btn-secondary" id="no-award">بدون نقطة</button>
+                    </div>
+                </div>
+                
+                <div class="common-actions btn-container">
+                    <button class="btn btn-primary" id="next-question" style="display: none;">السؤال التالي</button>
+                    <button class="btn btn-warning" id="new-game-same-room">لعبة جديدة (نفس الإعدادات)</button>
+                    <button class="btn btn-danger" id="end-game">إنهاء اللعبة</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- شاشة النتيجة النهائية -->
+        <div class="result-screen" id="result-screen">
+            <h2>نتيجة اللعبة</h2>
+            
+            <div class="teams">
+                <div class="team">
+                    <h3 id="result-team1-name">الفريق الأول</h3>
+                    <p>النقاط النهائية: <span id="team1-final-score" class="score">0</span></p>
+                </div>
+                <div class="team">
+                    <h3 id="result-team2-name">الفريق الثاني</h3>
+                    <p>النقاط النهائية: <span id="team2-final-score" class="score">0</span></p>
+                </div>
+            </div>
+            
+            <h3 id="winner-display">الفائز: الفريق الأول</h3>
+            
+            <div class="btn-container">
+                <button class="btn btn-primary" id="play-again">لعبة جديدة</button>
+                <button class="btn btn-success" id="play-again-same-room">لعبة جديدة (نفس الإعدادات)</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- شاشة التواصل -->
+    <div class="contact-screen" id="contact-screen" style="display: none;">
+        <h2>تواصل معنا</h2>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>البريد الإلكتروني: tkhmynalshkhsyat@gmail.com</span>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>الهاتف: -</span>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fab fa-twitter"></i>
+                <span>تويتر: -@</span>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fab fa-instagram"></i>
+                <span>انستغرام: @-</span>
+            </div>
+
+          
+        </div>
+        
+        <div class="contact-form">
+            <h3>أرسل لنا رسالة</h3>
+            
+            <div class="form-group">
+                <label for="contact-name">الاسم</label>
+                <input type="text" id="contact-name" placeholder="أدخل اسمك">
+            </div>
+            
+            <div class="form-group">
+                <label for="contact-email">البريد الإلكتروني</label>
+                <input type="email" id="contact-email" placeholder="أدخل بريدك الإلكتروني">
+            </div>
+            
+            <div class="form-group">
+                <label for="contact-message">الرسالة</label>
+                <textarea id="contact-message" rows="4" placeholder="اكتب رسالتك هنا"></textarea>
+            </div>
+            
+            <div class="btn-container">
+                <button class="btn btn-primary" id="send-message">إرسال</button>
+                <button class="btn btn-secondary" id="close-contact">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- تضمين ملفات جافاسكريبت -->
+    <script src="js/data.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
